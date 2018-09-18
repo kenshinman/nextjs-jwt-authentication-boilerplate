@@ -1,26 +1,29 @@
-import React from 'react';
-import withRedux from 'next-redux-wrapper';
-import { initStore } from '../redux';
-import actions from '../redux/actions';
-import initialize from '../utils/initialize';
-import Layout from '../components/Layout';
+import React from "react";
+import withRedux from "next-redux-wrapper";
+import { initStore } from "../redux";
+import actions from "../redux/actions";
+import initialize from "../utils/initialize";
+import Layout from "../components/Layout";
 
 class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
+      firstname: "",
+      lastname: ""
     };
   }
 
-  static getInitialProps (ctx) {
+  static getInitialProps(ctx) {
     initialize(ctx);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.authenticate({email: this.state.email, password: this.state.password}, 'signup');
+    const { email, password, firstname, lastname } = this.state;
+    this.props.authenticate({ email, password, firstname, lastname }, "signup");
   }
 
   render() {
@@ -30,8 +33,7 @@ class Signup extends React.Component {
         <form
           onSubmit={this.handleSubmit.bind(this)}
           className="container"
-          style={{ width: '540px' }}
-        >
+          style={{ width: "540px" }}>
           <div className="field">
             <p className="control has-icons-left has-icons-right">
               <input
@@ -40,10 +42,46 @@ class Signup extends React.Component {
                 placeholder="Email"
                 required
                 value={this.state.email}
-                onChange={(e) => this.setState({email: e.target.value})}
+                onChange={e => this.setState({ email: e.target.value })}
               />
               <span className="icon is-small is-left">
                 <i className="fas fa-envelope" />
+              </span>
+              <span className="icon is-small is-right">
+                <i className="fas fa-check" />
+              </span>
+            </p>
+          </div>
+          <div className="field">
+            <p className="control has-icons-left has-icons-right">
+              <input
+                className="input"
+                type="text"
+                placeholder="Firstname"
+                required
+                value={this.state.firstname}
+                onChange={e => this.setState({ firstname: e.target.value })}
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-user" />
+              </span>
+              <span className="icon is-small is-right">
+                <i className="fas fa-check" />
+              </span>
+            </p>
+          </div>
+          <div className="field">
+            <p className="control has-icons-left has-icons-right">
+              <input
+                className="input"
+                type="text"
+                placeholder="lastname"
+                required
+                value={this.state.lastname}
+                onChange={e => this.setState({ lastname: e.target.value })}
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-user" />
               </span>
               <span className="icon is-small is-right">
                 <i className="fas fa-check" />
@@ -58,7 +96,7 @@ class Signup extends React.Component {
                 placeholder="Password"
                 required
                 value={this.state.password}
-                onChange={(e) => this.setState({password: e.target.value})}
+                onChange={e => this.setState({ password: e.target.value })}
               />
               <span className="icon is-small is-left">
                 <i className="fas fa-lock" />
