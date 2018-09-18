@@ -4,7 +4,7 @@ module.exports = {
         "node" : true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+    // "extends": "eslint:recommended",
     "parserOptions": {
         'ecmaVersion': 2017,
         "ecmaFeatures": {
@@ -18,22 +18,18 @@ module.exports = {
     ],
     "rules": {
         "indent": [
-            "error",
-            2
+            // "error",
+            // 2
         ],
         "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
+            // "error",
+            // "unix"
         ],
         "semi": [
             "error",
             "always"
         ],
-        "react/jsx-uses-vars": 1,
+        // "react/jsx-uses-vars": 1,
         "no-console": 1,
         "linebreak-style": 0,
     }
